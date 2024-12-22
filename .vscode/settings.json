@@ -1,0 +1,33 @@
+{
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "flake8.args": [
+        "./cyrano",
+        "./tests"
+    ],
+    "pylint.args": [
+        "./cyrano",
+        "./tests"
+    ],
+    "python.testing.pytestEnabled": false,
+    "python.testing.unittestEnabled": true,
+    "python.testing.unittestArgs": [
+        "--verbose",
+        "--start-directory",
+        "./tests",
+        "--pattern",
+        "*tests.py"
+    ],
+    "python.analysis.enablePytestSupport": false,
+    "python.analysis.extraPaths": [
+        "./cyrano"
+    ],
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.completeFunctionParens": true,
+    "python.analysis.importFormat": "relative",
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    "python.analysis.inlayHints.pytestParameters": false,
+    "cSpell.words": [
+        "logmodule"
+    ]
+}
