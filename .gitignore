@@ -1,0 +1,9 @@
+# Python files
+env/
+*.pyc
+**/*.egg-info/
+pip-wheel-metadata/
+dist/
+
+# Log files
+*.log

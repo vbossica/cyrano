@@ -1,0 +1,10 @@
+{
+    // Recommended extensions for this workspace.
+    "recommendations": [
+        "ms-python.python"
+    ],
+
+    // VS Code recommended extensions that should be ignored for this workspace.
+    "unwantedRecommendations": [
+    ]
+}
