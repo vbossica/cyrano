@@ -13,7 +13,7 @@ class CyranoHelp(CLIHelp):
 
     def __init__(self, cli_ctx=None) -> None:
         # import command group help
-        import cyrano.groups.group1._help  # noqa: F401
+        import cyrano.groups.optimize._help  # noqa: F401
         super(CyranoHelp, self).__init__(
             cli_ctx=cli_ctx,
             welcome_message=WELCOME_MESSAGE)

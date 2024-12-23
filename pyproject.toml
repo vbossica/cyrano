@@ -12,6 +12,7 @@ authors = [
 ]
 dependencies = [
     "knack >= 0.12.0",
+    "semantic-kernel >= 1.17.1",
 ]
 dynamic = ["version"]
 

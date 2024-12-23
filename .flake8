@@ -4,7 +4,7 @@ ignore =
     # line break after binary operator
     W504
 per-file-ignores =
-    sample_cli/src/sample_cli/sample_cli_help.py:W605
+    cyrano/cyrano_help.py:W605
 exclude =
     env
     doc
