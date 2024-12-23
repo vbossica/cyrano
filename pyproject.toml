@@ -18,9 +18,9 @@ dynamic = ["version"]
 
 [project.urls]
 Homepage = "https://github.com/vbossica/cyrano"
-Documentation = "https://github.com/vbossica/cyrano/docs"
+Documentation = "https://github.com/vbossica/cyrano/tree/main/docs"
 Repository = "https://github.com/vbossica/cyrano.git"
-Issues = "https://github.com/vbossica/sample-python-app/issues"
+Issues = "https://github.com/vbossica/cyrano/issues"
 
 [project.scripts]
 cyrano = "cyrano.__main__:main"

@@ -27,11 +27,17 @@
         optimize : Commands for optimizing resumes.
     ```
 
+## Configuration
+
+1. Log into [Azure AI Foundry](https://oai.azure.com):
+    1. create a project
+    1. deploy a model
+
 1. Update the `~/.cyrano/config` file with the Azure OpenAI values:
 
     ```text
     [azure_openai]
-    deployment =
-    endpoint =
-    api_key =
+    deployment = [name of the deployed model]
+    endpoint = [AI Foundry project endpoint]
+    api_key = [AI Foundry project api key]
     ```
