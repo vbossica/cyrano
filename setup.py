@@ -14,6 +14,7 @@ setup(
     package_dir={'cyrano': 'cyrano'},
     install_requires=[
         'knack >= 0.12.0',
+        'semantic-kernel >= 1.17.1',
     ],
     entry_points={
         'console_scripts': [

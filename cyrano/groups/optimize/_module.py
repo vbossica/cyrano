@@ -10,8 +10,8 @@ def load_commands(cli_command_loader) -> None:
     """
 
     with CommandGroup(cli_command_loader,
-                      'group1', 'cyrano.groups.group1.{}') as group:
-        group.command('greetings', 'commands#greetings')
+                      'optimize', 'cyrano.groups.optimize.{}') as group:
+        group.command('experiences', 'commands#optimize_experiences')
 
 
 def load_arguments(cli_command_loader) -> None:
@@ -22,5 +22,6 @@ def load_arguments(cli_command_loader) -> None:
     """
 
     with ArgumentsContext(cli_command_loader, 'group1') as arguments:
-        arguments.argument('name', options_list='--name')
-        arguments.argument('throw_exception', options_list='--throw-exception')
+        arguments.argument('experiences_file', options_list='--experiences-file')
+        arguments.argument('requirements_file', options_list='--requirements-file')
+        arguments.argument('output_file', options_list='--output-file')

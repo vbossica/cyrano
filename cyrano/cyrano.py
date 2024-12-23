@@ -1,10 +1,6 @@
-from __future__ import print_function
-from typing import Literal
-
 from knack import CLI
 from cyrano.common.config import CLI_ENV_VARIABLE_PREFIX, GLOBAL_CONFIG_DIR
 from cyrano.common.logmodule import init_logging
-from cyrano.groups.group1.greeting_exception import GreetingException
 from .cyrano_commands import CyranoCommandsLoader
 from .cyrano_help import CyranoHelp
 
@@ -25,10 +21,3 @@ class Cyrano(CLI):
             help_cls=CyranoHelp)
         init_logging('cyrano.log')
         self.args = None
-
-    def exception_handler(self, ex) -> Literal[1]:
-        if isinstance(ex, GreetingException):
-            print(f'Greetings caught: {ex}')
-            return 1
-
-        return super(Cyrano, self).exception_handler(ex)

@@ -24,5 +24,14 @@
         cyrano
 
     Subgroups:
-        group1 : Commands for group1.
+        optimize : Commands for optimizing resumes.
+    ```
+
+1. Update the `~/.cyrano/config` file with the Azure OpenAI values:
+
+    ```text
+    [openai]
+    model =
+    endpoint =
+    api_key =
     ```
