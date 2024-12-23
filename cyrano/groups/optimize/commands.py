@@ -1,12 +1,9 @@
 import asyncio
 import logging
-from ...common.config import GLOBAL_CONFIG
 from semantic_kernel import Kernel
 from semantic_kernel.utils.logging import setup_logging
 from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion
-from semantic_kernel.connectors.ai.open_ai.prompt_execution_settings.azure_chat_prompt_execution_settings import (
-    AzureChatPromptExecutionSettings,
-)
+from ...common.config import GLOBAL_CONFIG
 
 
 def optimize_experiences(experiences_file: str,
