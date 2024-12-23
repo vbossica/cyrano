@@ -1,5 +1,5 @@
 from knack.help import CLIHelp
-from ._version import VERSION
+from .__version__ import __version__
 
 # pylint: disable=anomalous-backslash-in-string
 # pylint: disable=import-outside-toplevel
@@ -20,7 +20,7 @@ class CyranoHelp(CLIHelp):
 
 
 # Logo generation http://patorjk.com/software/taag/#p=display&h=2&v=3&f=Doom&t=cyrano
-WELCOME_MESSAGE = f"""Cyrano {VERSION}
+WELCOME_MESSAGE = f"""Cyrano {__version__}
   ___ _   _ _ __ __ _ _ __   ___
  / __| | | | '__/ _` | '_ \ / _ \\
 | (__| |_| | | | (_| | | | | (_) |

@@ -1,0 +1,29 @@
+[build-system]
+requires = ["flit_core<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "cyrano"
+description = "An AI system to improve resumes."
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [
+  {name = "Vladimir Ritz Bossicard", email = "vbossica+github@gmail.com"},
+]
+dependencies = [
+    "knack >= 0.12.0",
+    "semantic-kernel >= 1.17.1",
+]
+dynamic = ["version"]
+
+[project.urls]
+Homepage = "https://github.com/vbossica/cyrano"
+Documentation = "https://github.com/vbossica/cyrano/docs"
+Repository = "https://github.com/vbossica/cyrano.git"
+Issues = "https://github.com/vbossica/sample-python-app/issues"
+
+[project.scripts]
+cyrano = "cyrano.__main__:main"
+
+[tool.setuptools.dynamic]
+version = {attr = "my_package.__version__"}
