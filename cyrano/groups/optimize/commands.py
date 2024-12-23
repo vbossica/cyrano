@@ -59,4 +59,4 @@ async def _optimize_experiences(experiences_file: str,
     )
     if response:
         with open(output_file, 'w', encoding='utf-8') as file:
-            file.write(response)
+            file.write(response.content)

@@ -1,7 +1,8 @@
 {
     // Recommended extensions for this workspace.
     "recommendations": [
-        "ms-python.python"
+        "ms-python.python",
+        "github.vscode-github-actions"
     ],
 
     // VS Code recommended extensions that should be ignored for this workspace.
