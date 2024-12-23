@@ -30,8 +30,8 @@
 1. Update the `~/.cyrano/config` file with the Azure OpenAI values:
 
     ```text
-    [openai]
-    model =
+    [azure_openai]
+    deployment =
     endpoint =
     api_key =
     ```

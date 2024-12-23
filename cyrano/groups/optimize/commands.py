@@ -37,14 +37,14 @@ async def _optimize_experiences(experiences_file: str,
 
     kernel = Kernel()
     kernel.add_service(AzureChatCompletion(
-        deployment_name="cyrano",
-        endpoint=GLOBAL_CONFIG.get('openai', 'endpoint'),
-        api_key=GLOBAL_CONFIG.get('openai', 'api_key')))
+        deployment_name=GLOBAL_CONFIG.get('azure_openai', 'deployment'),
+        endpoint=GLOBAL_CONFIG.get('azure_openai', 'endpoint'),
+        api_key=GLOBAL_CONFIG.get('azure_openai', 'api_key')))
 
     setup_logging()
     logging.getLogger("kernel").setLevel(logging.DEBUG)
 
-    prompt = f"Optimize the experiences based on the job requirements:\n" \
+    prompt = f"Find the 3 best experiences based on the job requirements:\n" \
              f"Requirements: {requirements}\n" \
              f"Experiences: {experiences}"
 
