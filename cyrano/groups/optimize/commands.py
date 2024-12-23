@@ -1,8 +1,7 @@
 import asyncio
 import logging
-from semantic_kernel import Kernel
-from semantic_kernel.utils.logging import setup_logging
-from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion
+from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion, AzureChatPromptExecutionSettings
+from semantic_kernel.contents import ChatHistory
 from ...common.config import GLOBAL_CONFIG
 
 
@@ -32,20 +31,32 @@ async def _optimize_experiences(experiences_file: str,
     with open(requirements_file, 'r', encoding='utf-8') as file:
         requirements = file.read()
 
-    kernel = Kernel()
-    kernel.add_service(AzureChatCompletion(
+    chat_completion_service = AzureChatCompletion(
         deployment_name=GLOBAL_CONFIG.get('azure_openai', 'deployment'),
         endpoint=GLOBAL_CONFIG.get('azure_openai', 'endpoint'),
-        api_key=GLOBAL_CONFIG.get('azure_openai', 'api_key')))
+        api_key=GLOBAL_CONFIG.get('azure_openai', 'api_key'))
 
-    setup_logging()
-    logging.getLogger("kernel").setLevel(logging.DEBUG)
+    request_settings = AzureChatPromptExecutionSettings(
+        max_tokens=1000,
+    )
 
-    prompt = f"Find the 3 best experiences based on the job requirements:\n" \
-             f"Requirements: {requirements}\n" \
-             f"Experiences: {experiences}"
+    system_message = """
+    You are an assistant that helps people find the best
+    3 experiences based on the job requirements. The user
+    will provide you with a list of experiences and a list
+    of requirements.
+    """
 
-    answer = await kernel.invoke_prompt(prompt)
+    user_input = f"Requirements: {requirements}\n\n" \
+                 f"Experiences: {experiences}"
 
-    with open(output_file, 'w', encoding='utf-8') as file:
-        file.write(answer.encode('utf-8'))
+    chat_history = ChatHistory(system_message=system_message)
+    chat_history.add_user_message(user_input)
+
+    response = await chat_completion_service.get_chat_message_content(
+        chat_history=chat_history,
+        settings=request_settings,
+    )
+    if response:
+        with open(output_file, 'w', encoding='utf-8') as file:
+            file.write(response)
