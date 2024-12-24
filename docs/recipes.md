@@ -1,6 +1,8 @@
-# Usage
+# Recipes
 
-To use Cyrano to improve your resume:
+## Find the best experiences
+
+To find your best experiences that match a job requirements:
 
 1. Create a file that lists, in a Markdown format, the experiences you want to filter
 1. Create a file containing the job requirements
