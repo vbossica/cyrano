@@ -28,6 +28,8 @@
     "python.analysis.inlayHints.functionReturnTypes": true,
     "python.analysis.inlayHints.pytestParameters": false,
     "cSpell.words": [
-        "logmodule"
+        "logmodule",
+        "résumés",
+        "venv"
     ]
 }

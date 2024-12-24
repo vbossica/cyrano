@@ -4,8 +4,13 @@ Cyrano de Bergerac, the titular character in Edmond Rostand's play, is a masterf
 
 Were he alive today, Cyrano would undoubtedly harness the power of AI to craft compelling résumés.
 
+## Overview
+
+The tooling is written in Python and leverages the Azure AI Foundry offering.
+
+![overview](docs/.media/overview.png)
+
 Here are a couple of links to get you started:
 
-* [Architecture](/docs/architecture.md)
 * [Installation and configuration](/docs/installation.md)
-* [Common Usage](/docs/usage.md)
+* Some [recipes](/docs/recipes.md)
