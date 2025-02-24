@@ -7,3 +7,6 @@ dist/
 
 # Log files
 *.log
+
+# script files
+*.ps1
