@@ -7,7 +7,7 @@ from semantic_kernel.processes.kernel_process.kernel_process_step_context import
 class PublishResumeStep(KernelProcessStep):
 
     class OutputEvents(Enum):
-        ResumePublished = 'ResumePublished'
+        RESUME_PUBLISHED = 'ResumePublished'
 
     @kernel_function
     async def run(self,
@@ -18,4 +18,4 @@ class PublishResumeStep(KernelProcessStep):
         with open(data['output_file'], 'w', encoding='utf-8') as file:
             file.write(data['optimization'])
 
-        await context.emit_event(process_event=PublishResumeStep.OutputEvents.ResumePublished)
+        await context.emit_event(process_event=PublishResumeStep.OutputEvents.RESUME_PUBLISHED)

@@ -1,11 +1,11 @@
 import asyncio
 import logging
-from cyrano.processes.resume_optimization_process import ResumeOptimizationProcess
 from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion
 from semantic_kernel.kernel import Kernel
 from semantic_kernel.processes.kernel_process.kernel_process_event import KernelProcessEvent
 from semantic_kernel.processes.local_runtime.local_kernel_process import start
-from ...common.config import GLOBAL_CONFIG
+from cyrano.common.config import GLOBAL_CONFIG
+from cyrano.processes.resume_optimization_process import ResumeOptimizationProcess
 
 
 def optimize_experiences(experiences_file: str,
@@ -43,7 +43,7 @@ async def _optimize_experiences_sk(experiences_file: str,
     await start(
         kernel_process,
         kernel,
-        KernelProcessEvent(id=ResumeOptimizationProcess.ProcessEvents.OptimizeResumeEvent,
+        KernelProcessEvent(id=ResumeOptimizationProcess.ProcessEvents.OPTIMIZE_RESUME_EVENT,
                            data={
                                'experiences_file': experiences_file,
                                'requirements_file': requirements_file,

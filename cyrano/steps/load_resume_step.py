@@ -7,7 +7,7 @@ from semantic_kernel.processes.kernel_process.kernel_process_step_context import
 class LoadResumeStep(KernelProcessStep):
 
     class OutputEvents(Enum):
-        ResumeLoaded = 'ResumeLoaded'
+        RESUME_LOADED = 'ResumeLoaded'
 
     @kernel_function
     async def run(self,
@@ -20,7 +20,7 @@ class LoadResumeStep(KernelProcessStep):
         data['experiences'] = self._load_file(data['experiences_file'])
         data['requirements'] = self._load_file(data['requirements_file'])
 
-        await context.emit_event(process_event=LoadResumeStep.OutputEvents.ResumeLoaded,
+        await context.emit_event(process_event=LoadResumeStep.OutputEvents.RESUME_LOADED,
                                  data=data)
 
     def _load_file(self, file_path: str) -> str:

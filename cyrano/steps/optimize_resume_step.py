@@ -10,7 +10,7 @@ from semantic_kernel.contents import ChatHistory
 class OptimizeResumeStep(KernelProcessStep):
 
     class OutputEvents(Enum):
-        ResumeOptimized = 'ResumeOptimized'
+        RESUME_OPTIMIZED = 'ResumeOptimized'
 
     @kernel_function
     async def run(self,
@@ -51,5 +51,5 @@ class OptimizeResumeStep(KernelProcessStep):
 
         data['optimization'] = optimization
 
-        await context.emit_event(process_event=OptimizeResumeStep.OutputEvents.ResumeOptimized,
+        await context.emit_event(process_event=OptimizeResumeStep.OutputEvents.RESUME_OPTIMIZED,
                                  data=data)
