@@ -3,7 +3,7 @@ from semantic_kernel import Kernel
 from semantic_kernel.functions.kernel_function_decorator import kernel_function
 from semantic_kernel.processes.kernel_process.kernel_process_step import KernelProcessStep
 from semantic_kernel.processes.kernel_process.kernel_process_step_context import KernelProcessStepContext
-from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion, AzureChatPromptExecutionSettings
+from semantic_kernel.connectors.ai.open_ai import AzureChatPromptExecutionSettings
 from semantic_kernel.contents import ChatHistory
 
 
@@ -49,7 +49,7 @@ class OptimizeResumeStep(KernelProcessStep):
         )
         optimization = response.content if response else None
 
+        data['optimization'] = optimization
+
         await context.emit_event(process_event=OptimizeResumeStep.OutputEvents.ResumeOptimized,
-                                 data={
-                                     'optimization': optimization
-                                 })
+                                 data=data)

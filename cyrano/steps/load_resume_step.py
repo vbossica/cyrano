@@ -17,14 +17,11 @@ class LoadResumeStep(KernelProcessStep):
         Load the resume from the file and set it in the context.
         """
 
-        experiences = self._load_file(data['experiences_file'])
-        requirements = self._load_file(data['requirements_file'])
+        data['experiences'] = self._load_file(data['experiences_file'])
+        data['requirements'] = self._load_file(data['requirements_file'])
 
         await context.emit_event(process_event=LoadResumeStep.OutputEvents.ResumeLoaded,
-                                 data={
-                                     'experiences': experiences,
-                                     'requirements': requirements
-                                 })
+                                 data=data)
 
     def _load_file(self, file_path: str) -> str:
         print(f'Load file {file_path}')

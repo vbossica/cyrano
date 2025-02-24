@@ -15,7 +15,7 @@ class PublishResumeStep(KernelProcessStep):
                   data: dict) -> None:
         print("Publish resume step")
 
-        with open('data/a.out', 'w', encoding='utf-8') as file:
+        with open(data['output_file'], 'w', encoding='utf-8') as file:
             file.write(data['optimization'])
 
         await context.emit_event(process_event=PublishResumeStep.OutputEvents.ResumePublished)
