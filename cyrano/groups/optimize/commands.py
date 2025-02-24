@@ -1,8 +1,11 @@
 import asyncio
 import logging
-from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion, AzureChatPromptExecutionSettings
-from semantic_kernel.contents import ChatHistory
-from ...common.config import GLOBAL_CONFIG
+from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion
+from semantic_kernel.kernel import Kernel
+from semantic_kernel.processes.kernel_process.kernel_process_event import KernelProcessEvent
+from semantic_kernel.processes.local_runtime.local_kernel_process import start
+from cyrano.common.config import GLOBAL_CONFIG
+from cyrano.processes.resume_optimization_process import ResumeOptimizationProcess
 
 
 def optimize_experiences(experiences_file: str,
@@ -17,46 +20,33 @@ def optimize_experiences(experiences_file: str,
     :param output_file: the output file
     """
 
-    asyncio.run(_optimize_experiences(experiences_file, requirements_file, output_file))
+    asyncio.run(_optimize_experiences_sk(experiences_file, requirements_file, output_file))
 
 
-async def _optimize_experiences(experiences_file: str,
-                                requirements_file: str,
-                                output_file: str) -> None:
-    logging.info('Optimize experiences')
+async def _optimize_experiences_sk(experiences_file: str,
+                                   requirements_file: str,
+                                   output_file: str) -> None:
+    logging.info('Optimize experiences with Semantic Kernel')
 
-    # read experiences and job requirements
-    with open(experiences_file, 'r', encoding='utf-8') as file:
-        experiences = file.read()
-    with open(requirements_file, 'r', encoding='utf-8') as file:
-        requirements = file.read()
+    kernel = Kernel()
 
     chat_completion_service = AzureChatCompletion(
+        service_id='azure_chat_completion',
         deployment_name=GLOBAL_CONFIG.get('azure_openai', 'deployment'),
         endpoint=GLOBAL_CONFIG.get('azure_openai', 'endpoint'),
         api_key=GLOBAL_CONFIG.get('azure_openai', 'api_key'))
 
-    request_settings = AzureChatPromptExecutionSettings(
-        max_tokens=1000,
+    kernel.add_service(chat_completion_service)
+
+    kernel_process = ResumeOptimizationProcess.create_process().build()
+
+    await start(
+        kernel_process,
+        kernel,
+        KernelProcessEvent(id=ResumeOptimizationProcess.ProcessEvents.OPTIMIZE_RESUME_EVENT,
+                           data={
+                               'experiences_file': experiences_file,
+                               'requirements_file': requirements_file,
+                               'output_file': output_file
+                           }),
     )
-
-    system_message = """
-    You are an assistant that helps people find the best
-    3 experiences based on the job requirements. The user
-    will provide you with a list of experiences and a list
-    of requirements.
-    """
-
-    user_input = f"Requirements: {requirements}\n\n" \
-                 f"Experiences: {experiences}"
-
-    chat_history = ChatHistory(system_message=system_message)
-    chat_history.add_user_message(user_input)
-
-    response = await chat_completion_service.get_chat_message_content(
-        chat_history=chat_history,
-        settings=request_settings,
-    )
-    if response:
-        with open(output_file, 'w', encoding='utf-8') as file:
-            file.write(response.content)
