@@ -11,7 +11,7 @@ authors = [
   {name = "Vladimir Ritz Bossicard", email = "vbossica+github@gmail.com"},
 ]
 dependencies = [
-    "knack >= 0.12.0",
+    "knack >= 0.14.0",
     "semantic-kernel >= 1.17.1",
 ]
 dynamic = ["version"]
